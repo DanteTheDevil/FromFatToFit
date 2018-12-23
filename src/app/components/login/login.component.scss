@@ -1,0 +1,119 @@
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 550px;
+  height: 600px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 10px 10px 10px #398574;
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 50px;
+    color: white;
+    width: 450px;
+  }
+
+  input[type=submit] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 65px;
+    border: 0;
+    padding: 0;
+    margin-top: 30px;
+    background-color: #3abfae;
+    color: white;
+    font-size: 20px;
+
+    &:hover {
+      background-color: #389d8c;
+      cursor: pointer;
+    }
+  }
+
+  form {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+}
+
+.profileLogo {
+  width: 120px;
+  margin-top: 30px;
+}
+
+.inputLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 65px;
+  background-color: #3abfae;
+  font-size: 30px;
+
+  i {
+    color: white;
+  }
+}
+
+.spanText {
+  margin-top: 20px;
+  color: grey;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
+  width: 150px;
+
+  img {
+    width: 50px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.hint {
+  color: red;
+  margin-top: 5px;
+}
+
+.checkForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+
+  i {
+    color: #e20000;
+  }
+}
+
+.input {
+  width: 280px;
+  height: 65px;
+  font-size: 25px;
+  padding: 0 0 0 20px;
+  background-color: #ffffff;
+  border: 0;
+  outline: 0;
+
+  &::placeholder {
+    color: #a8a8a8;
+  }
+}

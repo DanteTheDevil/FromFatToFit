@@ -1,0 +1,31 @@
+<div class='login'>
+  <img src='../../../assets/profile.png' class='profileLogo' alt=''/>
+  <form #loginForm='ngForm' (ngSubmit)='loginEmail(loginForm.value)'>
+    <label>
+      <span class='inputLogo'>
+        <i class="far fa-envelope"></i>
+      </span>
+      <input type='text' class='input' placeholder='Email' name='email' [(ngModel)]='email' />
+      <span class='checkForm'>
+        <i class="fas fa-times"></i>
+      </span>
+    </label>
+    <span class='hint'>Something incorrect</span>
+    <label>
+      <span class='inputLogo'>
+        <i class="fas fa-lock-open"></i>
+      </span>
+      <input type='password' class='input' placeholder='Password' name='password' [(ngModel)]='password'/>
+      <span class='checkForm'>
+        <i class="fas fa-times"></i>
+      </span>
+    </label>
+    <span class='hint'>Something incorrect</span>
+    <input type='submit' value='SIGN IN'/>
+  </form>
+  <span class='spanText'>Or use social media to sign in</span>
+  <div class='socialIcons'>
+    <img src='../../../assets/facebook.png' alt='' (click)='loginFacebook()'/>
+    <img src='../../../assets/google+.png' alt='' (click)='loginGoogle()'/>
+  </div>
+</div>

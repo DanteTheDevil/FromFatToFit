@@ -3,6 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  firebase: {
+    apiKey: 'AIzaSyCUDDvioaZdWezYZGbzyT06hj2fHHBkiCo',
+    authDomain: 'from-fat-to-fit.firebaseapp.com',
+    databaseURL: 'https://from-fat-to-fit.firebaseio.com',
+    projectId: 'from-fat-to-fit',
+    storageBucket: 'from-fat-to-fit.appspot.com',
+    messagingSenderId: '992866260722'
+  },
   production: false
 };
 

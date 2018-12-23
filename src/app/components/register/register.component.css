@@ -1,0 +1,108 @@
+.register {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 550px;
+  height: 600px;
+  background-color: #f0f0f0;
+  box-shadow: 10px 10px 10px #398574;
+}
+.register label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 450px;
+  margin: 20px 0 0 50px;
+}
+.register input[type=submit] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 65px;
+  border: 0;
+  padding: 0;
+  margin-top: 30px;
+  background-color: #3abfae;
+  color: white;
+  font-size: 20px;
+}
+.register input[type=submit]:hover {
+  background-color: #389d8c;
+  cursor: pointer;
+}
+.register form {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profileLogo {
+  width: 120px;
+  margin-top: 30px;
+}
+
+.inputLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 65px;
+  background-color: #3abfae;
+  font-size: 30px;
+}
+.inputLogo i {
+  color: white;
+}
+
+.spanText {
+  margin-top: 30px;
+  color: grey;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
+  width: 150px;
+}
+.socialIcons img {
+  width: 50px;
+}
+.socialIcons img:hover {
+  cursor: pointer;
+}
+
+.checkForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+}
+
+.input {
+  width: 280px;
+  height: 65px;
+  font-size: 25px;
+  padding: 0 0 0 20px;
+  background-color: #ffffff;
+  border: 0;
+  outline: 0;
+}
+.input::placeholder {
+  color: #a8a8a8;
+}
+
+.hint {
+  color: red;
+  margin-top: 5px;
+}
+
+/*# sourceMappingURL=register.component.css.map */
