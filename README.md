@@ -13,6 +13,7 @@ Demo is available on Firebase hosting: [demo](https://from-fat-to-fit.firebaseap
 
 * html/scss
 * angular 7
+* angular CLI
 * google firebase
 * angular fire
 
