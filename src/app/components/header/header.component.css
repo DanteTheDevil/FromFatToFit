@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 350px;
+  margin-top: 10px;
+}
+.header img {
+  width: 700px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  height: 70px;
+  background-color: #3c3c3c;
+  margin-top: 20px;
+}
+.navigation a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  padding: 0 20px 0 20px;
+}
+.navigation a:hover {
+  background-color: #696969;
+}
+.navigation a:visited {
+  text-decoration: none;
+}
+.navigation a:last-child {
+  margin-left: auto;
+  color: #ff453a;
+}
+
+/*# sourceMappingURL=header.component.css.map */

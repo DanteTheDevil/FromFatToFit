@@ -1,11 +1,12 @@
 .login {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  width: 550px;
-  height: 600px;
+  width: 1000px;
+  height: 700px;
   background-color: rgb(240, 240, 240);
-  box-shadow: 10px 10px 10px #398574;
+  margin: 30px 0 5px 0;
 
   label {
     display: flex;
@@ -14,6 +15,10 @@
     margin: 20px 0 0 50px;
     color: white;
     width: 450px;
+
+    &:nth-child(1) {
+      margin: 30px 0 0 50px;
+    }
   }
 
   input[type=submit] {
@@ -24,7 +29,7 @@
     height: 65px;
     border: 0;
     padding: 0;
-    margin-top: 30px;
+    margin-top: 20px;
     background-color: #3abfae;
     color: white;
     font-size: 20px;
@@ -46,8 +51,7 @@
 }
 
 .profileLogo {
-  width: 120px;
-  margin-top: 30px;
+  width: 150px;
 }
 
 .inputLogo {
@@ -65,6 +69,7 @@
 }
 
 .spanText {
+  font-size: 16px;
   margin-top: 20px;
   color: grey;
 }
@@ -89,6 +94,7 @@
 .hint {
   color: red;
   margin-top: 5px;
+  font-size: 16px;
 }
 
 .checkForm {

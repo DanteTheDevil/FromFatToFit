@@ -1,9 +1,8 @@
 .app {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  flex-direction: column;
   width: 1400px;
-  height: 800px;
 }
 
 /*# sourceMappingURL=app.component.css.map */

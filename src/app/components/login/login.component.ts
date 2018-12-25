@@ -8,11 +8,21 @@ import { AuthService } from '../../services/auth/auth.service';
   providers: []
 })
 export class LoginComponent implements OnInit {
+  errors = {
+    'required': 'You can\'t left this field empty',
+    'email': 'Email is invalid',
+  };
   email: string;
   password: string;
   constructor(private authService: AuthService) {
     this.email = '';
     this.password = '';
+  }
+  checkErrors(field): boolean {
+    return field.errors !== null;
+  }
+  getError (field): string {
+    return Object.keys(field.errors)[0];
   }
   ngOnInit() {
   }

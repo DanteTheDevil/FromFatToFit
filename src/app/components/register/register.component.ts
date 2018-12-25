@@ -17,7 +17,7 @@ export class RegisterComponent {
     'maxlength': 'You have reached max length(100 symbols)',
     'email': 'Email is invalid',
     'pattern': 'Password must contain at least 1 number and 1 uppercase symbol',
-    'matchPassword': 'Confirmed password doesn\'t match to yours'
+    'matchPassword': 'Confirmed password doesn\'t match to yours',
   };
   constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     this.createForm();
@@ -40,7 +40,6 @@ export class RegisterComponent {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(100),
-        Validators.pattern( /^(?:(?=.*\d)(?=.*[A-Z]).*)$/),
         CustomValidations.matchPassword
       ]]
     });
@@ -63,7 +62,7 @@ export class RegisterComponent {
       .then(response => {
         console.log(response);
       }, error => {
-
+        console.log(error);
       });
   }
 

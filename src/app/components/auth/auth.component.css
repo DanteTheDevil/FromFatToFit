@@ -1,0 +1,30 @@
+.auth {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;
+  width: 1000px;
+  height: 700px;
+  margin-top: 30px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+  font-size: 50px;
+  background-color: #3c3c3c;
+  color: white;
+}
+.option:hover {
+  background-color: #696969;
+  cursor: pointer;
+}
+.option i {
+  font-size: 100px;
+}
+
+/*# sourceMappingURL=auth.component.css.map */

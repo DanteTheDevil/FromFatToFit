@@ -4,27 +4,35 @@
     <label>
       <span class='inputLogo'><i class="far fa-envelope"></i></span>
       <input type='text' class='input' placeholder='Email' formControlName='email' required/>
-      <span *ngIf='checkErrors(formValues.email); then checkValid else checkInvalid'></span>
-      <ng-template #checkValid><span class='checkForm'><i class='fas fa-times' style='color: #e20000'></i></span></ng-template>
-      <ng-template #checkInvalid><span class='checkForm'><i class="fas fa-check" style='color: #01e201'></i></span></ng-template>
+      <ng-container *ngIf='formValues.email.dirty || formValues.email.touched; else inputNoError'>
+        <ng-container *ngIf='checkErrors(formValues.email) ; then inputValid else inputInvalid'></ng-container>
+      </ng-container>
+      <ng-template #inputValid><span class='checkForm'><i class='fas fa-times' style='color: #e20000'></i></span></ng-template>
+      <ng-template #inputInvalid><span class='checkForm'><i class="fas fa-check" style='color: #01e201'></i></span></ng-template>
+      <ng-template #inputNoError><span class='checkForm'></span></ng-template>
+      <ng-template #inputNoMsgError><span class='hint'>&nbsp;</span></ng-template>
     </label>
-    <span class='hint' *ngIf='checkErrors(formValues.email)'>
-      {{errors[getError(formValues.email)]}}
-    </span>
+    <ng-container *ngIf='checkErrors(formValues.email) && (formValues.email.dirty || formValues.email.touched); else inputNoMsgError'>
+      <span class='hint'>{{errors[getError(formValues.email)]}}</span>
+    </ng-container>
     <label>
       <span class='inputLogo'><i class="fas fa-lock-open"></i></span>
       <input type='password' class='input' placeholder='Password' formControlName='password' (ngModelChange)='onPasswordChange()'/>
-      <span *ngIf='checkErrors(formValues.password); then checkValid else checkInvalid'></span>
+      <ng-container *ngIf='formValues.password.dirty || formValues.password.touched; else inputNoError'>
+        <ng-container *ngIf='checkErrors(formValues.password); then inputValid else inputInvalid'></ng-container>
+      </ng-container>
     </label>
-    <span class='hint' *ngIf='checkErrors(formValues.password)'>
+    <span class='hint' *ngIf='checkErrors(formValues.password) && (formValues.password.dirty || formValues.password.touched); else inputNoMsgError'>
       {{errors[getError(formValues.password)]}}
     </span>
     <label>
       <span class='inputLogo'><i class="fas fa-redo-alt"></i></span>
       <input type='password' class='input' placeholder='Password' formControlName='confirm'/>
-      <span *ngIf='checkErrors(formValues.confirm); then checkValid else checkInvalid'></span>
+      <ng-container *ngIf='formValues.confirm.dirty || formValues.confirm.touched; else inputNoError'>
+        <ng-container *ngIf='checkErrors(formValues.confirm); then inputValid else inputInvalid'></ng-container>
+      </ng-container>
     </label>
-    <span class='hint' *ngIf='checkErrors(formValues.confirm)'>
+    <span class='hint' *ngIf='checkErrors(formValues.confirm) && (formValues.confirm.dirty || formValues.confirm.touched); else inputNoMsgError'>
       {{errors[getError(formValues.confirm)]}}
     </span>
     <input type='submit' [disabled]="!registerForm.valid" value='SIGN UP' />

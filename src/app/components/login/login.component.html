@@ -5,25 +5,33 @@
       <span class='inputLogo'>
         <i class="far fa-envelope"></i>
       </span>
-      <input type='text' class='input' placeholder='Email' name='email' [(ngModel)]='email' />
-      <span class='checkForm'>
-        <i class="fas fa-times"></i>
-      </span>
+      <input type='text' class='input' placeholder='Email' name='email' [(ngModel)]='email' #emailInput='ngModel' required email/>
+      <ng-container *ngIf='emailInput.touched || emailInput.dirty; else inputNoError'>
+        <ng-container *ngIf='emailInput.invalid; then inputValid else inputInvalid'></ng-container>
+      </ng-container>
+      <ng-template #inputValid><span class='checkForm'><i class='fas fa-times' style='color: #e20000'></i></span></ng-template>
+      <ng-template #inputInvalid><span class='checkForm'><i class="fas fa-check" style='color: #01e201'></i></span></ng-template>
+      <ng-template #inputNoError><span class='checkForm'></span></ng-template>
+      <ng-template #inputNoMsgError><span class='hint'>&nbsp;</span></ng-template>
     </label>
-    <span class='hint'>Something incorrect</span>
+    <ng-container *ngIf='emailInput.invalid && (emailInput.touched || emailInput.dirty); else inputNoMsgError'>
+      <span class='hint'>{{errors[getError(emailInput)]}}</span>
+    </ng-container>
     <label>
       <span class='inputLogo'>
         <i class="fas fa-lock-open"></i>
       </span>
-      <input type='password' class='input' placeholder='Password' name='password' [(ngModel)]='password'/>
-      <span class='checkForm'>
-        <i class="fas fa-times"></i>
-      </span>
+      <input type='password' class='input' placeholder='Password' name='password' [(ngModel)]='password' #passwordInput='ngModel' required />
+      <ng-container *ngIf='passwordInput.touched || passwordInput.dirty; else inputNoError'>
+        <ng-container *ngIf='passwordInput.invalid; then inputValid else inputInvalid'></ng-container>
+      </ng-container>
     </label>
-    <span class='hint'>Something incorrect</span>
-    <input type='submit' value='SIGN IN'/>
+    <ng-container *ngIf='passwordInput.invalid && (passwordInput.touched || passwordInput.dirty); else inputNoMsgError'>
+      <span class='hint'>{{errors[getError(passwordInput)]}}</span>
+    </ng-container>
+    <input type='submit' [disabled]='!loginForm.valid' value='SIGN IN'/>
   </form>
-  <span class='spanText'>Or use social media to sign in</span>
+  <span class='spanText'>Or use social media account</span>
   <div class='socialIcons'>
     <img src='../../../assets/facebook.png' alt='' (click)='loginFacebook()'/>
     <img src='../../../assets/google+.png' alt='' (click)='loginGoogle()'/>
