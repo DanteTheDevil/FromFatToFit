@@ -5,6 +5,7 @@
 
 ## From Fat To Fit
 
+In process
 
 Demo is available on Firebase hosting: [demo](https://from-fat-to-fit.firebaseapp.com/).  
 
@@ -12,10 +13,13 @@ Demo is available on Firebase hosting: [demo](https://from-fat-to-fit.firebaseap
 
 * html/scss
 * angular 7
+* angular CLI
 * google firebase
 * angular fire
 
 ## Mockups
+
+In process
 
 ## Contribution guide
 
