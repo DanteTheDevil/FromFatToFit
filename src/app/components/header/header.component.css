@@ -18,6 +18,7 @@
   height: 70px;
   background-color: #3c3c3c;
   margin-top: 20px;
+  border-radius: 5px;
 }
 .navigation a {
   display: flex;
@@ -31,6 +32,14 @@
 }
 .navigation a:hover {
   background-color: #696969;
+}
+.navigation a:hover:nth-child(1) {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.navigation a:hover:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .navigation a:visited {
   text-decoration: none;

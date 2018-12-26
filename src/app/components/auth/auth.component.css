@@ -6,25 +6,39 @@
   width: 1000px;
   height: 700px;
   margin-top: 30px;
+  border-radius: 5px;
 }
 
 .option {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 300px;
   height: 400px;
-  font-size: 50px;
   background-color: #3c3c3c;
   color: white;
+  border-radius: 5px;
 }
 .option:hover {
   background-color: #696969;
   cursor: pointer;
 }
 .option i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 100px;
+  height: 75%;
+}
+.option span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid white;
+  width: 90%;
+  height: 25%;
+  font-size: 40px;
 }
 
 /*# sourceMappingURL=auth.component.css.map */

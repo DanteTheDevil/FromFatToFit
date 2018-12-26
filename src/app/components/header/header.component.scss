@@ -19,6 +19,7 @@
   height: 70px;
   background-color: #3c3c3c;
   margin-top: 20px;
+  border-radius: 5px;
 
   a {
     display: flex;
@@ -32,6 +33,15 @@
 
     &:hover {
       background-color: #696969;
+
+      &:nth-child(1) {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      &:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
     }
 
     &:visited {

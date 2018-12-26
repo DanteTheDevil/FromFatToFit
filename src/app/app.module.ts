@@ -6,6 +6,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth/auth.service';
+import { CalculatorService } from './services/calculator/calculator.service';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ const appRoutes = [
   {path: 'tdee', component: TdeeComponent},
   {path: 'food', component: FoodComponent},
   {path: 'auth', component: AuthComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: '**', redirectTo: '/'}
 ];
 
@@ -44,10 +47,10 @@ const appRoutes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, CalculatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

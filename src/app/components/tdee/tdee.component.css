@@ -4,8 +4,91 @@
   align-items: center;
   background-color: #f0f0f0;
   width: 1000px;
-  height: 700px;
+  height: 900px;
   margin-top: 30px;
+  border-radius: 5px;
+}
+.tdee form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.tdee form input[type=submit] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  background-color: #3c3c3c;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border: 0;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+.tdee form input[type=submit]:hover {
+  background-color: #696969;
+}
+
+.field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.fieldName {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 20px;
+  width: 400px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.inputField {
+  display: flex;
+  width: 400px;
+  height: 50px;
+  border-radius: 5px;
+  padding-left: 20px;
+  font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid #3c3c3c;
+}
+
+.radioField {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: white;
+}
+.radioField input[type=radio] {
+  border: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.selectField {
+  width: 420px;
+  height: 55px;
+  padding-left: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  outline: none;
+  border: 1px solid #3c3c3c;
 }
 
 /*# sourceMappingURL=tdee.component.css.map */

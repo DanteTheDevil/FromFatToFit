@@ -1,3 +1,44 @@
 <div class='tdee'>
-
+  <form [formGroup]='calculator' (submit)='createTdee(calculator.value)'>
+    <label class='field'>
+      <span class='fieldName'>AGE</span>
+      <input class='inputField' type='text' formControlName='age'>
+    </label>
+    <label class='field'>
+      <span class='fieldName'>GENDER</span>
+      <span [ngStyle]='{"display": "flex", "flex-direction": "row", "justify-content": "space-between", "width": "420px"}'>
+          <span class='radioField'>
+            <input type='radio' formControlName='gender' [value]='"male"'>
+            <span class='radioOption'>Male</span>
+        </span>
+        <span class='radioField'>
+            <input type='radio' formControlName='gender' [value]='"female"'>
+            <span class='radioOption'>Female</span>
+        </span>
+      </span>
+    </label>
+    <label class='field'>
+      <span class='fieldName'>HEIGHT</span>
+      <input class='inputField' type='text' formControlName='height'>
+    </label>
+    <label class='field'>
+      <span class='fieldName'>WEIGHT</span>
+      <input class='inputField' type='text' formControlName='weight'>
+    </label>
+    <label class='field'>
+      <span class='fieldName'>ACTIVITY LEVEL</span>
+      <select class='selectField' formControlName='activity'>
+        <option></option>
+        <option *ngFor='let item of getKeys(activities)' [ngValue]='item'>{{activities[item]}}</option>
+      </select>
+    </label>
+    <label class='field'>
+      <span class='fieldName'>CALCULATION FORMULA</span>
+      <select class='selectField' formControlName='formula'>
+        <option></option>
+        <option *ngFor='let item of getKeys(formulas)' [ngValue]='item'>{{formulas[item]}}</option>
+      </select>
+    </label>
+    <input type='submit' [disabled]='!calculator.valid' value='CALCULATE'>
+  </form>
 </div>
