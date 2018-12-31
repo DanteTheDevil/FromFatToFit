@@ -1,16 +1,12 @@
 <div class='register'>
   <img src='../../../assets/profile.png' class='profileLogo' alt=''/>
-  <form [formGroup]='registerForm' (submit)='registerUser(registerForm.value)'>
+  <form [formGroup]='registerForm' (submit)='registerUser(registerForm)'>
     <label>
       <span class='inputLogo'><i class="far fa-envelope"></i></span>
       <input type='text' class='input' placeholder='Email' formControlName='email' required/>
       <ng-container *ngIf='formValues.email.dirty || formValues.email.touched; else inputNoError'>
         <ng-container *ngIf='checkErrors(formValues.email) ; then inputValid else inputInvalid'></ng-container>
       </ng-container>
-      <ng-template #inputValid><span class='checkForm'><i class='fas fa-times' style='color: #e20000'></i></span></ng-template>
-      <ng-template #inputInvalid><span class='checkForm'><i class="fas fa-check" style='color: #01e201'></i></span></ng-template>
-      <ng-template #inputNoError><span class='checkForm'></span></ng-template>
-      <ng-template #inputNoMsgError><span class='hint'>&nbsp;</span></ng-template>
     </label>
     <ng-container *ngIf='checkErrors(formValues.email) && (formValues.email.dirty || formValues.email.touched); else inputNoMsgError'>
       <span class='hint'>{{errors[getError(formValues.email)]}}</span>
@@ -38,3 +34,8 @@
     <input type='submit' [disabled]="!registerForm.valid" value='SIGN UP' />
   </form>
 </div>
+
+<ng-template #inputValid><span class='checkForm'><i class='fas fa-times' style='color: #e20000'></i></span></ng-template>
+<ng-template #inputInvalid><span class='checkForm'><i class="fas fa-check" style='color: #01e201'></i></span></ng-template>
+<ng-template #inputNoError><span class='checkForm'></span></ng-template>
+<ng-template #inputNoMsgError><span class='hint'>&nbsp;</span></ng-template>

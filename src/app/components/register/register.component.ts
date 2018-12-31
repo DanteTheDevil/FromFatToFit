@@ -19,8 +19,10 @@ export class RegisterComponent {
     'pattern': 'Password must contain at least 1 number and 1 uppercase symbol',
     'matchPassword': 'Confirmed password doesn\'t match to yours',
   };
+  serverError: string;
   constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     this.createForm();
+    this.serverError = '';
   }
   createForm () {
     this.registerForm = this.formBuilder.group({
@@ -56,13 +58,17 @@ export class RegisterComponent {
   get formValues (): object {
     return this.registerForm.controls;
   }
-  registerUser(value) {
-
+  registerUser(form) {
+    const {value} = form;
+    this.authService.createData()
+      .subscribe((response: Response) => console.log(response), reject => console.log(reject));
     this.authService.createUser(value)
       .then(response => {
         console.log(response);
+
       }, error => {
-        console.log(error);
+        this.serverError = error.code;
+        form.controls.email.value = '';
       });
   }
 

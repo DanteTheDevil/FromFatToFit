@@ -47,8 +47,10 @@
     &:visited {
       text-decoration: none;
     }
-
-    &:last-child {
+    &:nth-last-child(1) {
+      color: #ff453a;
+    }
+    &:nth-last-child(2) {
       margin-left: auto;
       color: #ff453a;
     }

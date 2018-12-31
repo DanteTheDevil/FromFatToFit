@@ -1,4 +1,4 @@
-.home {
+.activity {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -9,4 +9,4 @@
   border-radius: 5px;
 }
 
-/*# sourceMappingURL=home.component.css.map */
+/*# sourceMappingURL=activity.component.css.map */

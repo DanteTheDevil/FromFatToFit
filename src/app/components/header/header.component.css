@@ -44,7 +44,10 @@
 .navigation a:visited {
   text-decoration: none;
 }
-.navigation a:last-child {
+.navigation a:nth-last-child(1) {
+  color: #ff453a;
+}
+.navigation a:nth-last-child(2) {
   margin-left: auto;
   color: #ff453a;
 }

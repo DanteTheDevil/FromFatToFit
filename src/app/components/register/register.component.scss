@@ -1,11 +1,13 @@
 .register {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 1000px;
-  height: 700px;
+  height: 800px;
   background-color: rgb(240, 240, 240);
   margin: 30px 0 5px 0;
+  border-radius: 5px;
 
   label {
     display: flex;
@@ -32,6 +34,7 @@
     background-color: #3abfae;
     color: white;
     font-size: 20px;
+    border-radius: 5px;
 
     &:hover {
       background-color: #389d8c;
@@ -52,7 +55,6 @@
 
 .profileLogo {
   width: 150px;
-  margin-top: 40px;
 }
 
 .inputLogo {
@@ -63,6 +65,8 @@
   height: 65px;
   background-color: #3abfae;
   font-size: 30px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   i {
     color: white;
@@ -86,6 +90,8 @@
   background-color: #ffffff;
   border: 0;
   outline: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   &::placeholder {
     color: #a8a8a8;

@@ -1,20 +1,22 @@
-.tdee {
+.page {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #f0f0f0;
   width: 1000px;
-  height: 900px;
+  height: 800px;
   margin-top: 30px;
   border-radius: 5px;
 }
-.tdee form {
+
+.calculator {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 450px;
 }
-.tdee form input[type=submit] {
+.calculator input[type=submit] {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +31,41 @@
   text-decoration: none;
   border-radius: 5px;
   margin-top: 50px;
+  outline: none;
 }
-.tdee form input[type=submit]:hover {
+.calculator input[type=submit]:hover {
+  background-color: #696969;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 600px;
+  font-size: 25px;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+.result > button {
+  width: 200px;
+  height: 60px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #3c3c3c;
+  outline: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+.result > button:hover {
   background-color: #696969;
 }
 
@@ -91,4 +126,4 @@
   border: 1px solid #3c3c3c;
 }
 
-/*# sourceMappingURL=tdee.component.css.map */
+/*# sourceMappingURL=bmr.component.css.map */

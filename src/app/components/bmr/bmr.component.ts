@@ -3,26 +3,22 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { CalculatorService } from '../../services/calculator/calculator.service';
 
 @Component({
-  selector: 'app-tdee',
-  templateUrl: './tdee.component.html',
-  styleUrls: ['./tdee.component.scss']
+  selector: 'app-bmr',
+  templateUrl: './bmr.component.html',
+  styleUrls: ['./bmr.component.scss']
 })
-export class TdeeComponent {
+export class BmrComponent {
   calculator: FormGroup;
-  activities: object = {
-    'bmr': 'Basic metabolism rate',
-    'sedentary': 'Sedentary (No exercise)',
-    'light': 'Light (3 times/week)',
-    'modern': 'Moderate (5 times/week)',
-    'heavy': 'Heavy (Exercise everyday)'
-  };
   formulas: object = {
     'harris': 'Harris-Benedict',
     'who': 'World Health Organization',
-    'mifflin': 'Mifflin-St. Jeor'
+    'mifflin': 'Mifflin-St. Jeor',
+    'owen': 'Owen'
   };
+  result: any;
   constructor(private formBuilder: FormBuilder, private calcService: CalculatorService) {
     this.createForm();
+    this.result = null;
   }
   getKeys (obj) {
     return Object.keys(obj);
@@ -37,11 +33,12 @@ export class TdeeComponent {
       gender: ['', Validators.required],
       height: ['', Validators.required],
       weight: ['', Validators.required],
-      activity: ['', Validators.required],
       formula: ['', Validators.required]
     });
   }
   createTdee (data) {
+
+    this.result = this.calcService.calculate(data);
     console.log(this.calcService.calculate(data));
-  }
+}
 }

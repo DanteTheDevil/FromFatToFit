@@ -14,4 +14,7 @@ export class CustomValidations {
     }
     return null;
   }
+  asyncEmail (control: AbstractControl): object | null {
+    return null;
+  }
 }

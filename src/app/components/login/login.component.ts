@@ -18,9 +18,6 @@ export class LoginComponent implements OnInit {
     this.email = '';
     this.password = '';
   }
-  checkErrors(field): boolean {
-    return field.errors !== null;
-  }
   getError (field): string {
     return Object.keys(field.errors)[0];
   }
