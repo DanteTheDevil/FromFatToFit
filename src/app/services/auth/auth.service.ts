@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable ()
 export class AuthService {
   private token: string;
 
-  constructor(private afAuth: AngularFireAuth, private http: HttpClient) {
+  constructor(private afAuth: AngularFireAuth, private http: HttpClient, private router: Router) {
     this.token = localStorage.getItem('token');
   }
 
@@ -21,8 +22,16 @@ export class AuthService {
     return this.token !== null;
   }
   logOut () {
-    this.token = null;
-    localStorage.removeItem('token');
+    return new Promise<any>((resolve, reject) => {
+      if (firebase.auth().currentUser) {
+        this.afAuth.auth.signOut();
+        this.token = null;
+        localStorage.removeItem('token');
+        resolve();
+      } else {
+        reject();
+      }
+    });
   }
   saveToken (token) {
     this.token = token;
@@ -54,8 +63,11 @@ export class AuthService {
         .signInWithPopup(provider)
         .then(response => {
           const token: string = response.credential.idToken;
+          const tokenId = firebase.auth().currentUser.getIdToken();
 
+          console.log(tokenId);
           this.saveToken(token);
+          this.router.navigate(['profile']);
           resolve(response);
         }, err => {
           console.log(err);
