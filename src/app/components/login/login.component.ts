@@ -25,18 +25,14 @@ export class LoginComponent implements OnInit {
   }
   loginEmail (form) {
     this.authService.loginWithEmail(form)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
-    console.log(form);
+      .subscribe(response => console.log('it works'));
   }
   loginGoogle () {
     this.authService.loginWithGoogle()
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+      .subscribe(response => console.log('it works'));
   }
   loginFacebook () {
     this.authService.loginWithFacebook()
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+      .subscribe(response => console.log('it works'));
   }
 }

@@ -3,20 +3,15 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable ()
-export class AuthService {
+export class AuthService{
   private token: string;
 
   constructor(private afAuth: AngularFireAuth, private http: HttpClient, private router: Router) {
     this.token = localStorage.getItem('token');
-  }
-
-  createData() {
-    return this.http.post('https://from-fat-to-fit.firebaseio.com/data.json', {
-      name: 'likle',
-      email: 'dr.likle@gmail.com'
-    });
   }
   isAuthenticated (): boolean {
     return this.token !== null;
@@ -36,57 +31,54 @@ export class AuthService {
   saveToken (token) {
     this.token = token;
     localStorage.setItem('token', token);
-    console.log(localStorage.getItem('ahah'));
   }
   createUser (value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
         .then(response => {
-          console.log(response);
           resolve(response);
         }, error => reject(error));
     });
   }
   loginWithEmail (value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-        .then(response => {
-        resolve(response);
-      }, error => reject(error));
-    });
+    const { email, password } = value;
+
+    return from(firebase.auth().signInWithEmailAndPassword(email, password))
+      .pipe(
+        switchMap(response => from(response.user.getIdToken())),
+        map(response => {
+          this.saveToken(response);
+          this.router.navigate(['profile']);
+          console.log(response);
+        })
+      );
   }
   loginWithGoogle () {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
 
-      this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(response => {
-          const token: string = response.credential.idToken;
-          const tokenId = firebase.auth().currentUser.getIdToken();
-
-          console.log(tokenId);
-          this.saveToken(token);
+    return from(this.afAuth.auth
+      .signInWithPopup(provider))
+      .pipe(
+        switchMap(response => from(response.user.getIdToken())),
+        map(response => {
+          this.saveToken(response);
           this.router.navigate(['profile']);
-          resolve(response);
-        }, err => {
-          console.log(err);
-          reject(err);
-        });
-    });
+          console.log(response);
+        })
+      );
   }
   loginWithFacebook () {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.FacebookAuthProvider();
+    const provider = new firebase.auth.FacebookAuthProvider();
 
-      this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(response => {
-          resolve(response);
-        }, error => {
-          console.log(error);
-          reject(error);
-        });
-    });
+    return from(this.afAuth.auth
+      .signInWithPopup(provider))
+      .pipe(
+        switchMap(response => from(response.user.getIdToken())),
+        map(response => {
+          this.saveToken(response);
+          this.router.navigate(['profile']);
+          console.log(response);
+        })
+      );
   }
 }

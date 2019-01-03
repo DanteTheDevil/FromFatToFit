@@ -60,8 +60,6 @@ export class RegisterComponent {
   }
   registerUser(form) {
     const {value} = form;
-    this.authService.createData()
-      .subscribe((response: Response) => console.log(response), reject => console.log(reject));
     this.authService.createUser(value)
       .then(response => {
         console.log(response);
