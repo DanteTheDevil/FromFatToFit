@@ -1,4 +1,4 @@
-.activity {
+.activityList {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7,40 +7,6 @@
   height: 800px;
   margin-top: 30px;
   border-radius: 5px;
-}
-
-.calculator {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 20px;
-  width: 300px;
-}
-.input span {
-  display: flex;
-  margin-left: 15px;
-  width: 100%;
-}
-.input input[type=number] {
-  width: 100%;
-  height: 50px;
-  border: 1px solid #3c3c3c;
-  border-radius: 5px;
-  margin-top: 10px;
-  padding-left: 20px;
-  font-size: 20px;
-  text-decoration: none;
-  outline: none;
 }
 
 .tableHeader {
@@ -62,7 +28,15 @@
   width: 50%;
 }
 
-.currentActivity {
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 800px;
+  height: 500px;
+  padding: 0;
+}
+.table li {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -70,50 +44,79 @@
   background-color: white;
   border: 1px solid #3c3c3c;
   border-radius: 5px;
-  width: 800px;
+  width: 100%;
   height: 50px;
-  margin-top: 30px;
 }
-.currentActivity span {
+.table li:hover {
+  cursor: pointer;
+  background-color: #d2d2d2;
+}
+.table li a {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #3c3c3c;
+}
+.table li a:visited {
+  color: #3c3c3c;
+}
+.table li span {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
 }
 
-.result {
+.search {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  width: 800px;
-  height: 250px;
+  flex-direction: row;
+  width: 500px;
+  height: 50px;
+  margin-top: 30px;
 }
-.result span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.search i {
+  color: #3c3c3c;
+}
+.search input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  outline: 0;
+  padding-left: 20px;
+  font-size: 30px;
+  margin: 0 20px 0 60px;
 }
 
-.submitButton {
+.pages {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 60px;
-  background-color: #3c3c3c;
-  cursor: pointer;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  border: 0;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 50px;
-  outline: none;
+  flex-direction: row;
+  width: 800px;
+  height: 50px;
 }
-.submitButton:hover {
+.pages li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  list-style: none;
+  background-color: #3c3c3c;
+  border-radius: 5px;
+  color: white;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.pages li:hover {
+  cursor: pointer;
   background-color: #696969;
 }
 
-/*# sourceMappingURL=activity.component.css.map */
+/*# sourceMappingURL=activityList.component.css.map */

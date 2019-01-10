@@ -1,0 +1,25 @@
+<div class='activityList'>
+  <form>
+    <label class='search'>
+      <input type='text'>
+      <i class="fas fa-search"></i>
+    </label>
+  </form>
+  <div class='tableHeader'>
+    <span>Name</span>
+    <span>kCal/kg per hour</span>
+  </div>
+  <ul class='table'>
+    <li *ngFor='let value of visibleList'>
+      <a [routerLink]='[value.name]'>
+        <span>{{value.name}}</span>
+        <span>{{value.calories}}</span>
+      </a>
+    </li>
+  </ul>
+  <ul class='pages'>
+    <li *ngFor='let value of pages; index as i' (click)='changePage(i + 1)'>
+      {{i + 1}}
+    </li>
+  </ul>
+</div>

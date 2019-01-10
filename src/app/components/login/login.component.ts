@@ -18,21 +18,19 @@ export class LoginComponent implements OnInit {
     this.email = '';
     this.password = '';
   }
+
   getError (field): string {
     return Object.keys(field.errors)[0];
   }
+
   ngOnInit() {
   }
+
   loginEmail (form) {
     this.authService.loginWithEmail(form)
-      .subscribe(response => console.log('it works'));
+      .subscribe();
   }
-  loginGoogle () {
-    this.authService.loginWithGoogle()
-      .subscribe(response => console.log('it works'));
-  }
-  loginFacebook () {
-    this.authService.loginWithFacebook()
-      .subscribe(response => console.log('it works'));
+  loginSocial (type) {
+    this.authService.loginWithSocial(type).subscribe();
   }
 }

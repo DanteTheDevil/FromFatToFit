@@ -9,3 +9,69 @@
   margin: 30px 0 5px 0;
   border-radius: 5px;
 }
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 900px;
+  height: 400px;
+
+  img {
+    width: 300px;
+    border: 0;
+    border-radius: 10px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 600px;
+    height: 400px;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      text-decoration: none;
+      list-style: none;
+      height: 70px;
+    }
+  }
+}
+
+.charName {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  width: 70%;
+  height: 100%;
+  background-color: #3c3c3c;
+  color: white;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.charValue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 68px;
+  border: 1px solid #3c3c3c;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+
+.activities {
+  width: 898px;
+  height: 300px;
+  margin-top: 30px;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+}
+
+

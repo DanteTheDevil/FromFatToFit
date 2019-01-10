@@ -1,83 +1,128 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase} from '@angular/fire/database';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
+import {BehaviorSubject, from, Observable} from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import {User} from '../../interfaces/user';
 
 @Injectable ()
-export class AuthService{
-  private token: string;
 
-  constructor(private afAuth: AngularFireAuth, private http: HttpClient, private router: Router) {
-    this.token = localStorage.getItem('token');
+export class AuthService {
+  private uToken: string | null;
+  private uId = new BehaviorSubject<string>('');
+
+  constructor(private afAuth: AngularFireAuth, private http: HttpClient, private router: Router, private afDb: AngularFireDatabase) {
+
   }
+
+  updateUserId (newId): void {
+    console.log(newId);
+    this.uId.next(newId);
+  }
+
+  setUserToken (token): void {
+    this.uToken = token;
+  }
+
   isAuthenticated (): boolean {
-    return this.token !== null;
+    return this.uToken !== null;
   }
-  logOut () {
-    return new Promise<any>((resolve, reject) => {
-      if (firebase.auth().currentUser) {
+
+  logOut (): Observable<void> {
+    return new Observable<void>(observer => {
+      if (this.afAuth.user) {
         this.afAuth.auth.signOut();
-        this.token = null;
-        localStorage.removeItem('token');
-        resolve();
-      } else {
-        reject();
+        this.setUserToken(null);
       }
+      observer.next();
     });
   }
-  saveToken (token) {
-    this.token = token;
-    localStorage.setItem('token', token);
+
+  getUserId (): BehaviorSubject<string> {
+    return this.uId;
   }
-  createUser (value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-        .then(response => {
-          resolve(response);
-        }, error => reject(error));
-    });
+
+  createData (uid) {
+    const newUser: User = {
+      uid: uid,
+      gender: '',
+      age: 0,
+      height: 0,
+      bmr: 0,
+      weight: 0
+    };
+
+    return this.afDb.list('users').set(uid, newUser);
   }
-  loginWithEmail (value) {
+
+  createUser (value): Observable<any> {
+    const {email, password} = value;
+
+    return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password))
+      .pipe(
+        switchMap(response => {
+          const {uid} = response.user;
+
+          this.updateUserId(uid);
+          return from(response.user.getIdToken());
+        }),
+        map(response => {
+          this.setUserToken(response);
+          this.router.navigate(['profile']);
+
+          return this.createData(this.uId);
+        })
+      );
+  }
+
+  loginWithEmail (value): Observable<any> {
     const { email, password } = value;
 
     return from(firebase.auth().signInWithEmailAndPassword(email, password))
       .pipe(
-        switchMap(response => from(response.user.getIdToken())),
+        switchMap(response => {
+          const {uid} = response.user;
+
+          this.updateUserId(uid);
+          return from(response.user.getIdToken());
+        }),
         map(response => {
-          this.saveToken(response);
+          this.setUserToken(response);
           this.router.navigate(['profile']);
-          console.log(response);
         })
       );
   }
-  loginWithGoogle () {
-    const provider = new firebase.auth.GoogleAuthProvider();
+
+  loginWithSocial (type): Observable<any> {
+    let provider;
+
+    switch (type) {
+      case 'facebook': {
+        provider = new firebase.auth.FacebookAuthProvider();
+        break;
+      }
+      case 'google': {
+        provider = new firebase.auth.GoogleAuthProvider();
+        break;
+      }
+    }
 
     return from(this.afAuth.auth
       .signInWithPopup(provider))
       .pipe(
-        switchMap(response => from(response.user.getIdToken())),
-        map(response => {
-          this.saveToken(response);
-          this.router.navigate(['profile']);
-          console.log(response);
-        })
-      );
-  }
-  loginWithFacebook () {
-    const provider = new firebase.auth.FacebookAuthProvider();
+        switchMap(response => {
+          const {uid} = response.user;
 
-    return from(this.afAuth.auth
-      .signInWithPopup(provider))
-      .pipe(
-        switchMap(response => from(response.user.getIdToken())),
-        map(response => {
-          this.saveToken(response);
+          this.updateUserId(uid);
+          return from(response.user.getIdToken());
+        }),
+        switchMap(response => {
+          this.setUserToken(response);
           this.router.navigate(['profile']);
-          console.log(response);
+          return this.createData(this.uId);
         })
       );
   }

@@ -11,6 +11,7 @@ import { CustomValidations } from '../../validators/confirm.validator';
 export class RegisterComponent {
 
   registerForm: FormGroup;
+  serverError: string;
   errors = {
     'required': 'You can\'t left this field empty',
     'minlength': 'Field must contain at least 6 symbols',
@@ -19,11 +20,12 @@ export class RegisterComponent {
     'pattern': 'Password must contain at least 1 number and 1 uppercase symbol',
     'matchPassword': 'Confirmed password doesn\'t match to yours',
   };
-  serverError: string;
+
   constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     this.createForm();
     this.serverError = '';
   }
+
   createForm () {
     this.registerForm = this.formBuilder.group({
       email: ['', [
@@ -46,28 +48,26 @@ export class RegisterComponent {
       ]]
     });
   }
+
   onPasswordChange () {
     this.registerForm.controls.confirm.updateValueAndValidity();
   }
+
   checkErrors(field): boolean {
     return field.errors !== null;
   }
+
   getError (field): string {
     return Object.keys(field.errors)[0];
   }
+
   get formValues (): object {
     return this.registerForm.controls;
   }
-  registerUser(form) {
+
+  registerUser(form): void {
     const {value} = form;
-    this.authService.createUser(value)
-      .then(response => {
-        console.log(response);
 
-      }, error => {
-        this.serverError = error.code;
-        form.controls.email.value = '';
-      });
+    this.authService.createUser(value).subscribe();
   }
-
 }

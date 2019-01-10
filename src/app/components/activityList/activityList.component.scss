@@ -1,0 +1,128 @@
+.activityList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(240, 240, 240);
+  width: 1000px;
+  height: 800px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  height: 50px;
+  font-size: 30px;
+  background-color: #3c3c3c;
+  margin-top: 40px;
+  color: white;
+
+  & > span {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 800px;
+  height: 500px;
+  padding: 0;
+
+  li {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style: none;
+    background-color: white;
+    border: 1px solid #3c3c3c;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #d2d2d2;
+    }
+
+    a {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: #3c3c3c;
+      &:visited {
+        color: #3c3c3c;
+      }
+    }
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+    }
+  }
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 500px;
+  height: 50px;
+  margin-top: 30px;
+
+  i {
+    color: #3c3c3c;
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #3c3c3c;
+    border-radius: 5px;
+    outline: 0;
+    padding-left: 20px;
+    font-size: 30px;
+    margin: 0 20px 0 60px;
+  }
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 800px;
+  height: 50px;
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #696969;
+    }
+  }
+}

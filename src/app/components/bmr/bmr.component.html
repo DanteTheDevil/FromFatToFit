@@ -2,7 +2,7 @@
   <form class='calculator' [formGroup]='calculator' (submit)='createTdee(calculator.value)'>
     <label class='field'>
       <span class='fieldName'>AGE</span>
-      <input class='inputField' type='number' formControlName='age' min='1'>
+      <input class='inputField' type='number' formControlName='age' min='1' placeholder='Use full ages'>
     </label>
     <label class='field'>
       <span class='fieldName'>GENDER</span>
@@ -19,11 +19,11 @@
     </label>
     <label class='field'>
       <span class='fieldName'>HEIGHT</span>
-      <input class='inputField' type='number' formControlName='height' min='1'>
+      <input class='inputField' type='number' formControlName='height' min='1' placeholder='Use cm'>
     </label>
     <label class='field'>
       <span class='fieldName'>WEIGHT</span>
-      <input class='inputField' type='number' formControlName='weight' min='1'>
+      <input class='inputField' type='number' formControlName='weight' min='1' placeholder='Use kg'>
     </label>
     <label class='field'>
       <span class='fieldName'>CALCULATION FORMULA</span>
@@ -42,9 +42,11 @@
       the amount of energy expended while at rest in a neutrally temperate environment,
       and in a post-absorptive state.
     </span>
-    <div class='result' *ngIf='result !== null'>
+    <div class='result' *ngIf='result !== null && calculator.valid'>
       <span>Your BMR: {{result}}</span>
-      <button>ADD TO PROFILE</button>
+      <button (click)='updateUserData(calculator.value)'>
+        ADD TO PROFILE
+      </button>
     </div>
   </div>
 </div>

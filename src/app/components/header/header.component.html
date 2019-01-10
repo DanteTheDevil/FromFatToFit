@@ -3,7 +3,7 @@
   <nav class='navigation'>
     <a routerLink='' ><b>HOME</b></a>
     <a routerLink='/bmr' ><b>BMR CALCULATOR</b></a>
-    <a routerLink='/activity' ><b>ACTIVITY</b></a>
+    <a routerLink='/activities' ><b>ACTIVITIES</b></a>
     <ng-container *ngIf='!authService.isAuthenticated(); then notAuthenticated else authenticated'></ng-container>
   </nav>
 </div>

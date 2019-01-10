@@ -1,3 +1,28 @@
 <div class='activity'>
-
+  <div class='tableHeader'>
+    <span>Name</span>
+    <span>kCal/kg per hour</span>
+  </div>
+  <div class='currentActivity'>
+    <span>{{name}}</span>
+    <span>{{calories}}</span>
+  </div>
+  <div class='result'>
+    <span>RESULT:</span>
+    <span>{{result}}</span>
+    <button *ngIf='result' class='submitButton' (click)='updateUserActivities(calculator.value)'>
+      ADD TO PROFILE
+    </button>
+  </div>
+  <form class='calculator' [formGroup]='calculator' (submit)='calculateCalories(calculator.value)'>
+    <label class='input'>
+      <span>WEIGHT</span>
+      <input type='number' formControlName='weight' placeholder='Use kg'>
+    </label>
+    <label class='input'>
+      <span>DURATION</span>
+      <input type='number' formControlName='duration' placeholder='Use minutes'>
+    </label>
+    <input type='submit' value='CALCULATE' [disabled]='!calculator.valid' class='submitButton'>
+  </form>
 </div>
