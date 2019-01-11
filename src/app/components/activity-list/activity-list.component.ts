@@ -2,12 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivitiesService } from '../../services/activities/activities.service';
 import { Activities } from '../../interfaces/activities';
 import { Subscription } from 'rxjs';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity-list',
-  templateUrl: './activityList.component.html',
-  styleUrls: ['./activityList.component.scss']
+  templateUrl: './activity-list.component.html',
+  styleUrls: ['./activity-list.component.scss']
 })
 
 export class ActivityListComponent implements OnInit, OnDestroy {
@@ -19,7 +20,7 @@ export class ActivityListComponent implements OnInit, OnDestroy {
   private filteredData: any[];
   private autoCompleteVisibility: boolean;
 
-  constructor(private activitiesService: ActivitiesService, private formBuilder: FormBuilder) {
+  constructor(private activitiesService: ActivitiesService, private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -64,5 +65,13 @@ export class ActivityListComponent implements OnInit, OnDestroy {
     const firstPageElem = 7 * (page - 1);
     const lastPageElem = 7 + 7 * (page - 1);
     this.visibleList = this.activityList.slice(firstPageElem, lastPageElem);
+  }
+
+  pickActivity (value): void {
+    for (const item of this.activityList) {
+      if (item.name === value) {
+        this.router.navigate([`activities/${value}`]);
+      }
+    }
   }
 }

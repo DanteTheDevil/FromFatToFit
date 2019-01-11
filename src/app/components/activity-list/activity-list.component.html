@@ -1,8 +1,8 @@
 <div class='activityList'>
   <form [formGroup]='activitySearch' (keyup)='filterData(activitySearch.value.searchInput)'>
     <label class='search'>
-      <input type='text' formControlName='searchInput' >
-      <i class="fas fa-search"></i>
+      <input type='text' formControlName='searchInput'>
+      <i class="fas fa-search" (click)='pickActivity(activitySearch.value.searchInput)'></i>
     </label>
   </form>
   <ul class='autoComplete' *ngIf='autoCompleteVisibility'>

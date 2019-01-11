@@ -83,7 +83,12 @@
   margin-top: 30px;
 
   i {
+    cursor: pointer;
     color: #3c3c3c;
+
+    &:hover {
+      color: #868686;
+    }
   }
 
   input {

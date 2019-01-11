@@ -79,7 +79,11 @@
   margin-top: 30px;
 }
 .search i {
+  cursor: pointer;
   color: #3c3c3c;
+}
+.search i:hover {
+  color: #868686;
 }
 .search input {
   width: 100%;
@@ -150,4 +154,4 @@
   height: 100%;
 }
 
-/*# sourceMappingURL=activityList.component.css.map */
+/*# sourceMappingURL=activity-list.component.css.map */

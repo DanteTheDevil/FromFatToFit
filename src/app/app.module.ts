@@ -16,7 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { BmrComponent } from './components/bmr/bmr.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ActivityListComponent } from './components/activityList/activityList.component';
+import { ActivityListComponent } from './components/activity-list/activity-list.component';
 import { ActivityComponent } from './components/activity/activity.component';
 
 import { AuthService } from './services/auth/auth.service';

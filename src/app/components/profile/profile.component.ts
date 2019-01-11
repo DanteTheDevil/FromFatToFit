@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription.add(this.authService.userId$.subscribe(response => {
       this.userService.getUserData().subscribe(data => {
-        const newUserInfo = data[0];
+        const newUserInfo: User = data[0];
 
         this.totalCalories = newUserInfo.bmr;
         if (newUserInfo.activities) {
