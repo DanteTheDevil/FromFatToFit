@@ -4,23 +4,24 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase} from '@angular/fire/database';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {BehaviorSubject, from, Observable} from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import {User} from '../../interfaces/user';
+import { User } from '../../interfaces/user';
 
 @Injectable ()
 
 export class AuthService {
+  private userId: string;
   private uToken: string | null;
-  private uId = new BehaviorSubject<string>('');
+  public userId$ = new BehaviorSubject<string>('');
 
   constructor(private afAuth: AngularFireAuth, private http: HttpClient, private router: Router, private afDb: AngularFireDatabase) {
 
   }
 
   updateUserId (newId): void {
-    console.log(newId);
-    this.uId.next(newId);
+    this.userId = newId;
+    this.userId$.next(newId);
   }
 
   setUserToken (token): void {
@@ -31,18 +32,8 @@ export class AuthService {
     return this.uToken !== null;
   }
 
-  logOut (): Observable<void> {
-    return new Observable<void>(observer => {
-      if (this.afAuth.user) {
-        this.afAuth.auth.signOut();
-        this.setUserToken(null);
-      }
-      observer.next();
-    });
-  }
-
-  getUserId (): BehaviorSubject<string> {
-    return this.uId;
+  getUserId () {
+    return this.userId;
   }
 
   createData (uid) {
@@ -73,7 +64,7 @@ export class AuthService {
           this.setUserToken(response);
           this.router.navigate(['profile']);
 
-          return this.createData(this.uId);
+          return this.createData(this.userId);
         })
       );
   }
@@ -122,8 +113,18 @@ export class AuthService {
         switchMap(response => {
           this.setUserToken(response);
           this.router.navigate(['profile']);
-          return this.createData(this.uId);
+          return this.createData(this.userId);
         })
       );
+  }
+
+  logOut (): Observable<void> {
+    return new Observable<void>(observer => {
+      if (this.afAuth.user) {
+        this.afAuth.auth.signOut();
+        this.setUserToken(null);
+      }
+      observer.next();
+    });
   }
 }

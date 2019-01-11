@@ -1,10 +1,15 @@
 <div class='activityList'>
-  <form>
+  <form [formGroup]='activitySearch' (keyup)='filterData(activitySearch.value.searchInput)'>
     <label class='search'>
-      <input type='text'>
+      <input type='text' formControlName='searchInput' >
       <i class="fas fa-search"></i>
     </label>
   </form>
+  <ul class='autoComplete' *ngIf='autoCompleteVisibility'>
+    <li *ngFor='let value of filteredData' (click)='pickFilteredValue(value.name)'>
+      <span class='searchOption'>{{value.name}}</span>
+    </li>
+  </ul>
   <div class='tableHeader'>
     <span>Name</span>
     <span>kCal/kg per hour</span>

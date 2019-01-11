@@ -14,7 +14,7 @@ import {UsersService} from '../../services/users/users.service';
 export class ActivityComponent implements OnInit, OnDestroy {
   private name: string;
   private calories: number;
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription();
   private result: number;
   private calculator: FormGroup;
 
@@ -32,14 +32,15 @@ export class ActivityComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.name = params['name'];
-    });
-    this.subscription = this.activitiesService.getData().subscribe(response => {
-      const currentActivity = response.find(item => item.name === this.name);
+    this.subscription
+      .add(this.route.params.subscribe((params: Params) => {
+        this.name = params['name'];
+      }))
+      .add(this.activitiesService.getData().subscribe(response => {
+        const currentActivity = response.find(item => item.name === this.name);
 
-      this.calories = currentActivity.calories;
-    });
+        this.calories = currentActivity.calories;
+      }));
   }
   calculateCalories(values): void {
     const {weight, duration} = values;

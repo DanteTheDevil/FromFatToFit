@@ -119,4 +119,35 @@
   background-color: #696969;
 }
 
+.autoComplete {
+  width: 380px;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  padding: 0;
+  margin: 90px 0 0 5px;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+}
+.autoComplete li {
+  list-style: none;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #3c3c3c;
+}
+.autoComplete li:last-child {
+  border-bottom: 0;
+}
+.autoComplete li:hover {
+  cursor: pointer;
+  background-color: #d2d2d2;
+}
+
+.searchOption {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  height: 100%;
+}
+
 /*# sourceMappingURL=activityList.component.css.map */

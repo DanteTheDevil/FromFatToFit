@@ -2,24 +2,34 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { Activities } from '../../interfaces/activities';
-import { map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ActivitiesService implements OnInit {
-  private activities = new BehaviorSubject<Activities[]>([{'name': '', 'calories': 0}]);
+  private activities$ = new BehaviorSubject<Activities[]>([{'name': '', 'calories': 0}]);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private afDb: AngularFireDatabase) {
   }
 
   ngOnInit () {
-    console.log(this.activities);
   }
 
-  updateData(activities: Activities[]) {
-    this.activities.next([...activities]);
+  filterData (word) {
+    return this.afDb.list('activities').valueChanges()
+      .pipe(
+        debounceTime(500),
+        map(response => {
+          return response.filter((data: Activities) => data.name.includes(word));
+        })
+      );
+  }
+
+  updateData(activities: Activities[]): void {
+    this.activities$.next([...activities]);
   }
 
   fetchData(): Observable<Activities[]> {
@@ -39,7 +49,7 @@ export class ActivitiesService implements OnInit {
   }
 
   getData(): BehaviorSubject<Activities[]> {
-    return this.activities;
+    return this.activities$;
   }
 
   getPagesArr (list: Activities[]): number[] {

@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class BmrComponent implements OnDestroy {
   calculator: FormGroup;
-  subscription: Subscription;
+  subscription: Subscription = new Subscription;
   result: number | null;
   formulas: object = {
     'harris': 'Harris-Benedict',
@@ -66,6 +66,6 @@ export class BmrComponent implements OnDestroy {
       bmr: this.result
     };
 
-    this.subscription = this.userService.updateUserData(data).subscribe();
+    this.subscription.add(this.userService.updateUserData(data).subscribe());
   }
 }

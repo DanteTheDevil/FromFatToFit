@@ -15,8 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { BmrComponent } from './components/bmr/bmr.component';
-import { FoodComponent } from './components/food/food.component';
-import { CaloriesComponent } from './components/calories/calories.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ActivityListComponent } from './components/activityList/activityList.component';
 import { ActivityComponent } from './components/activity/activity.component';
@@ -30,9 +28,8 @@ import { ActivitiesGuard } from './guards/activities/activities.guard';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'bmr', component: BmrComponent},
-  {path: 'food', component: FoodComponent},
-  {path: 'activities', component: ActivityListComponent},
+  {path: 'bmr', component: BmrComponent, canActivate: [AuthGuard]},
+  {path: 'activities', component: ActivityListComponent, canActivate: [AuthGuard]},
   {path: 'activities/:name', component: ActivityComponent, canActivate: [ActivitiesGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
@@ -49,8 +46,6 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     BmrComponent,
-    FoodComponent,
-    CaloriesComponent,
     ProfileComponent,
     ActivityListComponent,
     ActivityComponent

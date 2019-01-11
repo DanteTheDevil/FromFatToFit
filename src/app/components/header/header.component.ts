@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription;
 
   constructor(private authService: AuthService) { }
 
@@ -21,6 +21,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    this.subscription = this.authService.logOut().subscribe();
+    this.subscription.add(this.authService.logOut().subscribe());
   }
 }
