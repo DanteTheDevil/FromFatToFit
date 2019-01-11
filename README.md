@@ -16,6 +16,7 @@ Demo is available on Firebase hosting: [demo](https://from-fat-to-fit.firebaseap
 * angular CLI
 * google firebase
 * angular fire
+* RxJS
 
 ## Mockups
 
