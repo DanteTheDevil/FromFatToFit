@@ -1,12 +1,12 @@
-<div class='activityList'>
+<div #activityList class='activityList'>
   <form [formGroup]='activitySearch' (keyup)='filterData(activitySearch.value.searchInput)'>
     <label class='search'>
-      <input type='text' formControlName='searchInput'>
+      <input #searchField type='text' formControlName='searchInput'>
       <i class="fas fa-search" (click)='pickActivity(activitySearch.value.searchInput)'></i>
     </label>
   </form>
-  <ul class='autoComplete' *ngIf='autoCompleteVisibility'>
-    <li *ngFor='let value of filteredData' (click)='pickFilteredValue(value.name)'>
+  <ul #autoComplete class='autoComplete' [hidden]='!autoCompleteVisibility'>
+    <li *ngFor='let value of filteredData' [attr.activity-name]="value.name" class="auto-complete-list">
       <span class='searchOption'>{{value.name}}</span>
     </li>
   </ul>

@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivitiesService } from '../../services/activities/activities.service';
 import { Activities } from '../../interfaces/activities';
-import { Subscription } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'app-activity-list',
@@ -11,16 +12,58 @@ import { Router } from '@angular/router';
   styleUrls: ['./activity-list.component.scss']
 })
 
-export class ActivityListComponent implements OnInit, OnDestroy {
+export class ActivityListComponent implements OnInit, OnDestroy, AfterViewInit {
   private activityList: Activities[] = [];
-  private visibleList: Activities[] = [];
-  private pages: number[];
+  public visibleList: Activities[] = [];
+  public pages: number[];
   private subscription: Subscription = new Subscription();
   private activitySearch: FormGroup;
   private filteredData: any[];
   private autoCompleteVisibility: boolean;
+  private searchFieldSubscr: Subscription;
+
+  @ViewChild('searchField') searchField: ElementRef<HTMLInputElement>;
+  @ViewChild('activityList') activityListMainContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('autoComplete') autoComplete: ElementRef<HTMLUListElement>;
 
   constructor(private activitiesService: ActivitiesService, private formBuilder: FormBuilder, private router: Router) {
+  }
+
+  static getActivityNameFromElement(element: HTMLElement): string {
+    return element.tagName === 'SPAN' ? element.textContent : element.getAttribute('activity-name');
+  }
+
+  static isClickEventFiredFromAutoCompleteContainer(element: HTMLElement): boolean {
+    return element.classList.contains('autoComplete') ||
+      element.classList.contains('auto-complete-list') ||
+      element.classList.contains('searchOption');
+  }
+
+  ngAfterViewInit(): void {
+    const searchFieldBlurEvent$ = fromEvent(this.searchField.nativeElement, 'blur');
+    const activityListMouseMoveEvent$ = fromEvent(this.activityListMainContainer.nativeElement, 'mousemove');
+
+    this.searchFieldSubscr = searchFieldBlurEvent$
+      .pipe(
+        withLatestFrom(activityListMouseMoveEvent$),
+        tap((events) => {
+          const activityListMouseMoveEvent: MouseEvent = <MouseEvent>events[1];
+
+          const clickedElem: HTMLElement = <HTMLElement>document.elementFromPoint(
+            activityListMouseMoveEvent.clientX,
+            activityListMouseMoveEvent.clientY
+          );
+
+          if (ActivityListComponent.isClickEventFiredFromAutoCompleteContainer(clickedElem) && !this.autoComplete.nativeElement.hidden) {
+            const activityName = ActivityListComponent.getActivityNameFromElement(clickedElem);
+
+            this.pickFilteredValue(activityName);
+          }
+        })
+      )
+      .subscribe(() => {
+        this.setAutoCompleteVisibility(false);
+      });
   }
 
   ngOnInit(): void {
@@ -35,10 +78,10 @@ export class ActivityListComponent implements OnInit, OnDestroy {
     });
 
     this.filteredData = [];
-    this.setAutoCompleteVisibility(false);
   }
 
   ngOnDestroy(): void {
+    this.searchFieldSubscr.unsubscribe();
     this.subscription.unsubscribe();
   }
 
@@ -58,7 +101,6 @@ export class ActivityListComponent implements OnInit, OnDestroy {
   pickFilteredValue (value): void {
     console.log(value);
     this.activitySearch.setValue({searchInput: value});
-    this.setAutoCompleteVisibility(false);
   }
 
   changePage(page): void {
