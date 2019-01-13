@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./bmr.component.scss']
 })
 export class BmrComponent implements OnDestroy {
-  calculator: FormGroup;
-  subscription: Subscription = new Subscription;
-  result: number | null;
-  formulas: object = {
+  public calculator: FormGroup;
+  public subscription: Subscription = new Subscription;
+  public result: number | null;
+  public formulas: object = {
     'harris': 'Harris-Benedict',
     'who': 'World Health Organization',
     'mifflin': 'Mifflin-St. Jeor',

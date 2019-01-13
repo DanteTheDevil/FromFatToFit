@@ -3,7 +3,6 @@ import { UsersService } from '../../services/users/users.service';
 import { AuthService} from '../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from '../../interfaces/user';
-import { Activities } from '../../interfaces/activities';
 
 @Component({
   selector: 'app-profile',

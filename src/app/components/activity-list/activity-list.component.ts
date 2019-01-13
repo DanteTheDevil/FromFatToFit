@@ -17,8 +17,8 @@ export class ActivityListComponent implements OnInit, OnDestroy, AfterViewInit {
   public visibleList: Activities[] = [];
   public pages: number[];
   private subscription: Subscription = new Subscription();
-  private activitySearch: FormGroup;
-  private filteredData: any[];
+  public activitySearch: FormGroup;
+  public filteredData: any[];
   private autoCompleteVisibility: boolean;
   private searchFieldSubscr: Subscription;
 

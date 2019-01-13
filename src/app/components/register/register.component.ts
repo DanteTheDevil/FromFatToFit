@@ -10,8 +10,7 @@ import { CustomValidations } from '../../validators/confirm.validator';
 })
 export class RegisterComponent {
 
-  registerForm: FormGroup;
-  serverError: string;
+  public registerForm: FormGroup;
   errors = {
     'required': 'You can\'t left this field empty',
     'minlength': 'Field must contain at least 6 symbols',
@@ -23,7 +22,6 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     this.createForm();
-    this.serverError = '';
   }
 
   createForm () {

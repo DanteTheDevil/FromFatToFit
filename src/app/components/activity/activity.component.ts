@@ -12,11 +12,11 @@ import {UsersService} from '../../services/users/users.service';
 })
 
 export class ActivityComponent implements OnInit, OnDestroy {
-  private name: string;
-  private calories: number;
+  public name: string;
+  public calories: number;
   private subscription: Subscription = new Subscription();
-  private result: number;
-  private calculator: FormGroup;
+  public result: number;
+  public calculator: FormGroup;
 
   constructor(private route: ActivatedRoute, private activitiesService: ActivitiesService, private formBuilder: FormBuilder,
               private userService: UsersService) {
