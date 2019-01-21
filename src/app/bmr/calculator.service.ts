@@ -18,18 +18,26 @@ export class CalculatorService {
 
   getHarrisFormula (data): number {
     const {age, gender, height, weight} = data;
+    enum formulas {
+      male = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age),
+      female = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
+    }
 
     switch (gender) {
-      case 'male': return 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
-      case 'female': return 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+      case 'male': return formulas.male;
+      case 'female': return formulas.female;
     }
   }
   getOwensFormula (data): number {
     const {gender, weight} = data;
+    enum formulas {
+      male = 879 + (10.2 * weight),
+      female = 795 + (7.2 * weight)
+    }
 
     switch (gender) {
-      case 'male': return 879 + (10.2 * weight);
-      case 'female': return 795 + (7.2 * weight);
+      case 'male': return formulas.male;
+      case 'female': return formulas.female;
     }
   }
 
@@ -59,10 +67,14 @@ export class CalculatorService {
 
   getMifflinsFormula (data): number {
     const {age, gender, height, weight} = data;
+    enum formulas {
+      male =  (10 * weight) + (6.25 * height) - (5 * age) + 5,
+      female = (10 * weight) + (6.25 * height) - (5 * age) - 151
+    }
 
     switch (gender) {
-      case 'male': return (10 * weight) + (6.25 * height) - (5 * age) + 5;
-      case 'female': return (10 * weight) + (6.25 * height) - (5 * age) - 151;
+      case 'male': return formulas.male;
+      case 'female': return formulas.female;
     }
   }
 }
