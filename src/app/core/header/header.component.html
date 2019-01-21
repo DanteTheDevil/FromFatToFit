@@ -1,0 +1,18 @@
+<div class='header'>
+  <img src='../../../assets/logo.png' alt=''/>
+  <nav class='navigation'>
+    <a routerLink='' ><b>HOME</b></a>
+    <a routerLink='/bmr' *ngIf='authService.isAuthenticated()'><b>BMR CALCULATOR</b></a>
+    <a routerLink='/activities' *ngIf='authService.isAuthenticated()'><b>ACTIVITIES</b></a>
+    <ng-container *ngIf='!authService.isAuthenticated(); then notAuthenticated else authenticated'></ng-container>
+  </nav>
+</div>
+
+<ng-template #notAuthenticated>
+  <a routerLink='/register' ><b>REGISTER</b></a>
+  <a routerLink='/login' ><b>LOGIN</b></a>
+</ng-template>
+<ng-template #authenticated>
+  <a routerLink='/profile' ><b>PROFILE</b></a>
+  <a routerLink='' (click)='logOut()'><b>LOGOUT</b></a>
+</ng-template>

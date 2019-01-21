@@ -9,31 +9,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { BmrComponent } from './components/bmr/bmr.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ActivityListComponent } from './components/activity-list/activity-list.component';
-import { ActivityComponent } from './components/activity/activity.component';
+import { LoginComponent } from './core/auth/login/login.component';
+import { RegisterComponent } from './core/auth/register/register.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { BmrComponent } from './bmr/bmr.component';
+import { ProfileComponent } from './core/auth/profile/profile.component';
+import { ActivityListComponent } from './activities/list/activity-list.component';
+import { ItemComponent } from './activities/item/item.component';
 
-import { AuthService } from './services/auth/auth.service';
-import { CalculatorService } from './services/calculator/calculator.service';
-import { UsersService } from './services/users/users.service';
+import { AuthService } from './core/auth/auth.service';
+import { CalculatorService } from './bmr/calculator.service';
+import { UsersService } from './shared/services/users/users.service';
 
-import { AuthGuard } from './guards/auth/auth.guard';
-import { ActivitiesGuard } from './guards/activities/activities.guard';
+import { ProfileGuard } from './core/auth/profile/profile.guard';
+import { ItemGuard } from './activities/item/item.guard';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'bmr', component: BmrComponent, canActivate: [AuthGuard]},
-  {path: 'activities', component: ActivityListComponent, canActivate: [AuthGuard]},
-  {path: 'activities/:name', component: ActivityComponent, canActivate: [ActivitiesGuard]},
+  {path: 'bmr', component: BmrComponent, canActivate: [ProfileGuard]},
+  {path: 'activities', component: ActivityListComponent, canActivate: [ProfileGuard]},
+  {path: 'activities/:name', component: ItemComponent, canActivate: [ItemGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]},
   {path: '**', redirectTo: '/'}
 ];
 
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
     BmrComponent,
     ProfileComponent,
     ActivityListComponent,
-    ActivityComponent
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +64,8 @@ const appRoutes: Routes = [
     AuthService,
     CalculatorService,
     UsersService,
-    AuthGuard,
-    ActivitiesGuard
+    ProfileGuard,
+    ItemGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,47 @@
+<div class='profile'>
+  <div class='info'>
+    <ng-container [ngSwitch]='userInfo.gender'>
+      <img *ngSwitchCase='""' src='../../../../assets/unknown.jpg' alt='' />
+      <img *ngSwitchCase='"male"' src='../../../../assets/male.jpg' alt='' />
+      <img *ngSwitchCase='"female"' src='../../../../assets/female.jpg' alt='' />
+    </ng-container>
+    <ul *ngIf='checkUserInfo(); else noInfo'>
+      <li><span class='charName'>AGE:</span><span class='charValue'>{{userInfo.age}}</span></li>
+      <li><span class='charName'>HEIGHT:</span><span class='charValue'>{{userInfo.height}}</span></li>
+      <li><span class='charName'>WEIGHT:</span><span class='charValue'>{{userInfo.weight}}</span></li>
+      <li><span class='charName'>BMR:</span><span class='charValue'>{{userInfo.bmr}}</span></li>
+      <li><span class='charName'>TOTAL CALORIES:</span><span class='charValue'>{{totalCalories}}</span></li>
+    </ul>
+    <ng-template #noInfo>
+      <div class='noInfo'>
+        <span>There is no info.</span>
+        <span>Move to BMR calculator to add</span>
+        <span>Basal Metabolism Rate</span>
+        <span>and additional info to profile.</span>
+      </div>
+    </ng-template>
+  </div>
+  <div class='activities' *ngIf='checkActivitiesLength()'>
+    <div class='activitiesHeader'>
+      <span>NAME</span>
+      <span>DURATION</span>
+      <span>CALORIES</span>
+    </div>
+    <ul class='activitiesTable'>
+      <li class='tableRow' *ngFor='let value of userActivities'>
+        <span>{{value.name}}</span>
+        <span>{{value.duration}}</span>
+        <span>{{value.calories}}</span>
+        <span><i (click)='deleteActivity(value.name)' class="fas fa-times"></i></span>
+      </li>
+      <li class='deleteAllButton'  (click)='deleteAllActivities()' *ngIf='checkActivitiesLength() > 1'>
+        DELETE ALL
+      </li>
+    </ul>
+  </div>
+  <div class='noActivities' *ngIf='!checkActivitiesLength()'>
+    <span>Your additional activity is empty.</span>
+    <span>Move to activities to add additional activity.</span>
+  </div>
+</div>
+

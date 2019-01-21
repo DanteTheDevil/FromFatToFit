@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivitiesService } from './services/activities/activities.service';
-import { AuthService } from './services/auth/auth.service';
+import { ActivitiesService } from './activities/activities.service';
+import { AuthService } from './core/auth/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
-import {UsersService} from './services/users/users.service';
+import {UsersService} from './shared/services/users/users.service';
 
 @Component ({
   selector: 'app-root',
