@@ -1,8 +1,3 @@
-# ELEKS Front-Camp 2018
-
-* Course curator - [Volodymyr Shevchuk](https://github.com/dosandk)
-* Front-camp [facebook](https://www.facebook.com/groups/270300106928894)
-
 ## From Fat To Fit
 
 This application is a calculator of your daily calories intake. You can get your Basal Metabolism Rate, pick activities that you do every day and calculator will show you a total number of calories. You can also manipulate with current activities by deleting them if you dont need them anymore. Every user has his account, so you may check all your info when you want.
